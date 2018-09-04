@@ -18,7 +18,7 @@ OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 all: $(OBJECTS)
 	$(CC) $(OBJECTS) -mthumb-interwork -mthumb -specs=gba.specs -o $(TARGET).elf
 	$(OBJCOPY) -v -O binary $(TARGET).elf $(TARGET).gba
-	$(GBAFIX) $(BIN)/main.gba
+	$(GBAFIX) $(TARGET).gba
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) -I $(INCLUDE) -c $< -mthumb-interwork -mthumb -O2 -o $@
