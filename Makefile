@@ -20,5 +20,9 @@ all: $(OBJECTS)
 	$(OBJCOPY) -v -O binary $(TARGET).elf $(TARGET).gba
 	$(GBAFIX) $(TARGET).gba
 
-$(OBJ)/%.o: $(SRC)/%.c
+dirs:
+	test -d $(OBJ) || mkdir $(OBJ)
+	test -d $(BIN) || mkdir $(BIN)
+
+$(OBJ)/%.o: $(SRC)/%.c dirs
 	$(CC) -I $(INCLUDE) -c $< -mthumb-interwork -mthumb -O2 -o $@
